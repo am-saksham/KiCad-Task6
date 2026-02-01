@@ -77,6 +77,8 @@ Where:
 - $\rho$: Fill Ratio
 - $K_1, K_2$: Shape-dependent coefficients (e.g., Square: $K_1=2.34, K_2=2.75$)
 
+For a complete architectural overview, please refer to the **[Design Document](design_document.md)**.
+
 ---
 
 ## 👨‍💻 Developer Info
