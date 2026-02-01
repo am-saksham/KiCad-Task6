@@ -1,42 +1,86 @@
-# SpiralGen - KiCad 9 Plugin
+# SpiralGen Pro: Advanced Planar Inductor Generator for KiCad
 
-**SpiralGen Pro** is an advanced Python plugin for KiCad 9 that automates the generation of planar spiral inductors. It combines geometric algorithms with physics-based inductance estimation.
+[![KiCad Version](https://img.shields.io/badge/KiCad-9.0%2B-blue.svg)](https://kicad.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Stable-brightgreen.svg)]()
 
-## Features
-- **Multi-Geometry Support**: Circular, Square, and Octagonal spirals.
-- **Inductance Calculator**: Real-time estimation (in nH) using Mohan's approximations.
-- **Center Via Stitching**: Optional automatic placement of a center via.
-- **Parametric Design**: Full control over turns, width, spacing, and radius.
+**SpiralGen Pro** is a professional-grade EDA (Electronic Design Automation) plugin developed for **KiCad 9**. It bridges the gap between **Computer Science** (Geometric Algorithms) and **RF Electronics** (Inductance Physics) to automate the design of planar spiral inductors.
 
-## Installation
+Unlike standard drawing tools, SpiralGen Pro is **physics-aware**: it calculates the electrical inductance of your component in real-time as you design it.
 
-1. Locate your KiCad scripting folder. Usually:
-   - **Mac**: `~/Documents/KiCad/9.0/scripting/plugins`
-   - **Windows**: `%USERPROFILE%\Documents\KiCad\9.0\scripting\plugins`
-   - **Linux**: `~/.local/share/kicad/9.0/scripting/plugins` or `~/.kicad/scripting/plugins`
+---
 
-   *Note: If the directory does not exist, create it.*
+## ⚡ Key Features
 
-2. Copy the entire `SpiralGen` folder from this repository into the `plugins` directory.
+### 1. Multi-Geometry Engine
+Generate complex spiral geometries with mathematical precision:
+- **Circular Spirals**: Smooth Archimedean spirals for standard RF applications.
+- **Square Spirals**: High-density layouts for compact PCBs.
+- **Octagonal Spirals**: The perfect balance between Q-factor and area efficiency.
 
-3. Restart KiCad.
+### 2. Real-Time Physics Feedback
+Don't just draw blindly. **SpiralGen Pro** integrates the **Mohan’s Data Dependent Expressions**, providing instant feedback on the electrical properties of your design:
+- **Live Inductance Calculation (nH)**
+- Updates dynamically as you adjust Turns, Width, or Spacing.
 
-## Usage
+### 3. Practical Design Automation
+Built for real-world manufacturing:
+- **Automated Via Stitching**: Option to automatically place a center thermal/ground via.
+- **DRC-Compliant Tracks**: Generates native KiCad `PCB_TRACK` objects that respect board constraints.
 
-1. Open **PCB Editor** in KiCad.
-2. Look for the "SpiralGen" icon in the top toolbar (or find it in the "Tools" > "External Plugins" menu).
-3. Click to open the dialog.
-4. Enter parameters:
-   - **Shape**: Select Circular, Square, or Octagonal.
-   - **Number of Turns**: E.g., 5.
-   - **Track Width/Spacing**: (mm).
-   - **Inner Radius**: (mm).
-   - **Options**: Check "Add Center Via" if needed.
-   *Observe the Estimated Inductance value updating as you change parameters.*
-5. Click **OK**.
+---
 
-## Verification
-To verify the math logic without KiCad, run the included `verify_math.py`:
-```bash
-python3 verify_math.py
-```
+## 🚀 Installation
+
+1.  **Download** this repository.
+2.  **Locate** your KiCad plugins directory:
+    - **Windows**: `%USERPROFILE%\Documents\KiCad\9.0\scripting\plugins`
+    - **macOS**: `~/Documents/KiCad/9.0/scripting/plugins`
+    - **Linux**: `~/.local/share/kicad/9.0/scripting/plugins`
+3.  **Copy** the `SpiralGen` folder into the `plugins` directory.
+4.  **Restart** KiCad PCB Editor.
+
+---
+
+## 📖 Usage Guide
+
+1.  Open **KiCad PCB New**.
+2.  Click the **SpiralGen Pro** icon on the top toolbar (or access via `Tools > External Plugins`).
+3.  **Configure Parameters**:
+    | Parameter | Description |
+    | :--- | :--- |
+    | **Shape** | Select Circular, Square, or Octagonal geometry. |
+    | **Turns** | Number of full rotations (e.g., 4.5). |
+    | **Track Width** | Width of the copper trace in mm. |
+    | **Spacing** | Air gap between adjacent traces in mm. |
+    | **Inner Radius** | Distance from center to the start of the spiral. |
+4.  **Observe**: Watch the *Estimated Inductance* update in real-time.
+5.  Click **OK** to generate the footprint at the center of your viewport.
+
+---
+
+## 🧠 Technical Implementation
+
+### Algorithms
+The plugin utilizes a custom `GeometryEngine` class that implements:
+- **Archimedean Spiral Equation**: $r = a + b\theta$ for circular generation.
+- **Piecewise Linear Approximations**: For polygon spirals (Square/Octagon), generating vertices that expand radially by $\frac{\text{pitch}}{\text{sides}}$ per step.
+
+### Physics Model
+Inductance is estimated using the **Current Sheet Approximation**:
+
+$$ L = \frac{K_1 \cdot \mu_0 \cdot n^2 \cdot d_{avg}}{1 + K_2 \cdot \rho} $$
+
+Where:
+- $L$: Inductance in Henrys
+- $d_{avg}$: Average Diameter
+- $\rho$: Fill Ratio
+- $K_1, K_2$: Shape-dependent coefficients (e.g., Square: $K_1=2.34, K_2=2.75$)
+
+---
+
+## 👨‍💻 Developer Info
+
+This plugin was developed as part of the **eSim Semester Long Internship Spring 2026 (Task 6)**. It demonstrates the powerful synergy between Python scripting and Electronic Design Automation.
+
+**License**: MIT License
