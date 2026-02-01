@@ -66,6 +66,27 @@ The plugin utilizes a custom `GeometryEngine` class that implements:
 - **Archimedean Spiral Equation**: $r = a + b\theta$ for circular generation.
 - **Piecewise Linear Approximations**: For polygon spirals (Square/Octagon), generating vertices that expand radially by $\frac{\text{pitch}}{\text{sides}}$ per step.
 
+### System Architecture
+```mermaid
+classDiagram
+    class SpiralDialog {
+        +GetValues()
+        +OnParamChange()
+    }
+    class GeometryEngine {
+        +GeneratePoints()
+        +CalculateInductance()
+    }
+    class KiCadInterface {
+        +DrawTracks()
+        +PlaceVia()
+    }
+    
+    SpiralDialog --> GeometryEngine : Requests Data
+    SpiralDialog --> KiCadInterface : Triggers Draw
+    KiCadInterface --> GeometryEngine : Consumes Points
+```
+
 ### Physics Model
 Inductance is estimated using the **Current Sheet Approximation**:
 
