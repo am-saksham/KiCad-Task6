@@ -1,0 +1,31 @@
+Subject: eSim Semester Long Internship Spring 2026 Submission Task 6 - Plugin Proposal
+
+Dear eSim Team,
+
+I am writing to submit my proposal for Task 6: KiCad Plugin Development.
+
+**Plugin Name:** SpiralGen Pro - Advanced Planar Inductor Generator
+
+**Concept:**
+SpiralGen Pro is an advanced KiCad 9 PCB Editor plugin that automates the design of planar spiral inductors. It goes beyond simple drawing by integrating physics-based inductance estimation and multi-geometry support, demonstrating a strong fusion of Computer Science algorithms and RF Electronics principles.
+
+**Functionality:**
+- **Multi-Geometry Support:** Generates Circular, Square, and Octagonal spirals using parametric geometric algorithms.
+- **Physics-Integrated Design:** Provides real-time estimation of inductance (in nH) using Mohan’s Data Dependent Expressions as parameters are adjusted.
+- **Automated Connectivity:** detailed control over track width/spacing and optional automatic center-via stitching for layer interconnection.
+- **User Interface:** A robust wxPython-based GUI for seamless interaction within KiCad.
+
+**Integration of Fields:**
+- **Computer Science:** Implementation of geometric generation algorithms and object-oriented architecture.
+- **Electronics:** Application of RF circuit design formulas (Mohan's approximations) and PCB layout automation.
+
+**Status:**
+I have already developed a working prototype demonstrating all the above features. The Design Document and Source Code are available for your review.
+
+**Repository Link:** [Insert Your GitHub Link Here]
+**Design Document:** [Link to your design_document.md in the repo]
+
+Thank you for your consideration.
+
+Best regards,
+[My Name]
