@@ -9,12 +9,12 @@ The plugin follows a modular architecture, separating the UI, Geometry Engine, C
 
 ```mermaid
 graph TD
-    User[User] -->|Input Parameters| UI[UI Module (wxPython)]
-    UI -->|Parameters| Core[Geometry Engine]
-    UI -->|Parameters| Calc[Inductance Calculator]
+    User[User] -->|Input Parameters| UI["UI Module (wxPython)"]
+    UI -->|Parameters| Core["Geometry Engine"]
+    UI -->|Parameters| Calc["Inductance Calculator"]
     Calc -->|Inductance Value| UI
-    Core -->|Coordinate List| Interface[KiCad Interface (pcbnew API)]
-    Interface -->|Draw Tracks/Vias| PCB[KiCad PCB Editor]
+    Core -->|Coordinate List| Interface["KiCad Interface (pcbnew API)"]
+    Interface -->|Draw Tracks/Vias| PCB["KiCad PCB Editor"]
 ```
 
 ### 3. Module Breakdown
